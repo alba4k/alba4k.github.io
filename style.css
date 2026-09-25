@@ -6,8 +6,8 @@
   --text-primary: #f3f1ec;
   --text-muted: #9a9cab;
   --accent: #f2b75c;
-  --aurora-violet: #7b6ef6;
-  --aurora-teal: #3fd9c4;
+  --aurora-violet: #6940d1;
+  --aurora-teal: #f2b75c;
 
   --serif: "Fraunces", Georgia, serif;
   --sans: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -65,9 +65,6 @@ a {
   border-radius: 50%;
   filter: blur(90px);
   opacity: 0.55;
-  pointer-events: none;
-  isolation: isolate;
-  transition: translate 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .blob-a {
   width: 520px;
@@ -75,16 +72,16 @@ a {
   background: var(--aurora-violet);
   top: -140px;
   left: -120px;
-  animation: drift-a 26s ease-in-out infinite;
+  animation: drift-a 15s ease-in-out infinite;
 }
 .blob-b {
   width: 480px;
   height: 480px;
   background: var(--aurora-teal) !important;
   /* Driven by locked pixel coordinate */
-  top: var(--blob-b-top, 350px);
+  top: var(--blob-b-top, 600px);
   right: -100px;
-  animation: drift-b 32s ease-in-out infinite;
+  animation: drift-b 10s ease-in-out infinite;
   /* Smooth glide if JavaScript updates the variable */
   transition: top 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
