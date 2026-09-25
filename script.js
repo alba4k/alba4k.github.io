@@ -1,19 +1,43 @@
 // Footer year
-const yearEl = document.getElementById("year");
-if(yearEl) yearEl.textContent = new Date().getFullYear();
+const year_elem = document.getElementById("year");
+if(year_elem) year_elem.textContent = new Date().getFullYear();
 
-const tzEl = document.getElementById("timezone");
-if(tzEl) {
-  // Shows dynamic local time, e.g., "14:30 CET" or "14:30 CEST"
-  const now = new Date();
-  const timeStr = now.toLocaleTimeString("en-GB", {
-    timeZone: "Europe/Zurich",
-    hour: "2-digit",
-    minute: "2-digit",
-    timeZoneName: "short"
-  });
-  tzEl.textContent = timeStr;
+// Timezone
+const tz_elem = document.getElementById("timezone");
+function updateTime() {
+  if(tz_elem) {
+    // Shows dynamic local time, e.g., "14:30 CET" or "14:30 CEST"
+    const now = new Date();
+    const time_str = now.toLocaleTimeString("en-GB", {
+      timeZone: "Europe/Zurich",
+      hour: "2-digit",
+      minute: "2-digit",
+      timeZoneName: "short"
+    });
+    tz_elem.textContent = time_str;
+  }
 }
+updateTime()
+setInterval(updateTime, 10000); // update every 10s
+
+window.addEventListener('DOMContentLoaded', () => {
+  const cards = document.querySelectorAll('.project-card');
+  if(cards.length >= 2) {
+    cards[1].scrollIntoView({
+      inline: 'center',
+      block: 'nearest',
+      behavior: 'instant'
+    });
+  }
+  
+});
+window.addEventListener("keydown", (e) => {
+  if(e.key === "ArrowRight") {
+    document.querySelector(".portfolio-scroll")?.scrollBy({left: 350, behavior: "smooth"});
+  } else if(e.key === "ArrowLeft") {
+    document.querySelector(".portfolio-scroll")?.scrollBy({left: -350, behavior: "smooth"});
+  }
+});
 
 // Scroll-reveal: fade+blur elements in as they enter the viewport
 const revealEls = document.querySelectorAll("[data-reveal]");

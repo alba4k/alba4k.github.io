@@ -201,6 +201,85 @@ h2 {
   margin-bottom: 2rem;
 }
 
+/* ============ Portfolio ============ */
+.portfolio-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 50px,
+    black calc(100% - 50px),
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 50px,
+    black calc(100% - 50px),
+    transparent 100%
+  );
+}
+.portfolio-scroll::-webkit-scrollbar {
+  display: none;
+}
+.portfolio-track {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+
+  padding-left: calc(50vw - 165px);
+  padding-right: calc(50vw - 165px);
+}
+.project-card {
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+  width: 330px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 1.25rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--panel-border);
+  background: var(--panel);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  text-decoration: none;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.project-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+.project-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: rgba(242, 183, 92, 0.12);
+  color: var(--accent);
+}
+.project-name {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  color: var(--text-primary);
+}
+.project-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
 /* ============ Links grid ============ */
 .link-grid {
   display: grid;
@@ -345,6 +424,9 @@ h2 {
   }
   .blob {
     filter: blur(70px);
+  }
+  .project-card {
+    width: 210px;
   }
 }
 

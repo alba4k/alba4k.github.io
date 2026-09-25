@@ -42,7 +42,65 @@
   -->
   </header>
 
+  <!-- Shared icon sprite: define an icon once, reuse via <use> instead of
+       repeating the same inline <svg> markup for every project card. -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="icon-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="16 18 22 12 16 6"/>
+      <polyline points="8 6 2 12 8 18"/>
+    </symbol>
+  </svg>
+
   <main>
+    <!-- ===== PORTFOLIO — swap in your own repos ===== -->
+    <section class="portfolio" id="portfolio">
+      <div class="section-inner">
+        <h2 data-reveal>Projects</h2>
+        <div class="portfolio-scroll">
+          <div class="portfolio-track">
+
+            <a class="project-card" target="_blank" rel="noopener noreferrer" href="https://github.com/alba4k/albafetch" data-reveal>
+              <span class="project-icon">
+                <svg width="18" height="18"><use href="#icon-code"/></svg>
+              </span>
+              <span class="project-name">albafetch</span>
+              <span class="project-desc">
+                A (faster) clone of the well-known neofetch software. I started
+                working on this to learn C, then kept improving it from time to time.
+              </span>
+            </a>
+
+            <a class="project-card" target="_blank" rel="noopener noreferrer" href="https://github.com/alba4k/pickle" data-reveal>
+              <span class="project-icon">
+                <svg viewBox="0 0 128 128" width="20" height="20" fill="currentColor">
+                  <path d="M82.87226,114.98165c-3.1204-1.64582-6.10343-3.25774-8.984-4.90355a3.352,3.352,0,0,1-3.0174,1.92048,3.439,3.439,0,0,1-3.429-3.429,3.402,3.402,0,0,1,.65146-1.92048A138.01878,138.01878,0,0,1,46.04463,90.12145a3.29593,3.29593,0,0,1-2.60583,1.30292,3.439,3.439,0,0,1-3.429-3.429,3.34852,3.34852,0,0,1,1.19988-2.57194A143.4826,143.4826,0,0,1,25.57338,65.981a3.3772,3.3772,0,0,1-2.70883,1.44025,3.439,3.439,0,0,1-3.429-3.429,3.37645,3.37645,0,0,1,2.6745-3.29163c-3.05173-4.80055-6.06913-9.97876-9.08653-15.602C5.23951,31.69089,10.17739,18.24927,18.78413,12.42c7.26948-4.97222,19.71675-5.76057,30.75809,8.29817,2.023,2.22905,3.87486,4.28642,5.69234,6.20647a3.36035,3.36035,0,0,1,5.349,2.7775,3.29079,3.29079,0,0,1-.78839,2.09171c5.96613,6.2408,10.97268,11.07568,16.04746,15.67066a3.26444,3.26444,0,0,1,1.88614-.61712,3.41678,3.41678,0,0,1,3.429,3.429,3.11744,3.11744,0,0,1-.4459,1.57715c2.33205,2.023,4.73232,4.11475,7.26949,6.3438,2.4346,2.126,5.04088,4.389,7.85271,6.85792a3.35963,3.35963,0,0,1,2.46894-1.063,3.41734,3.41734,0,0,1,3.429,3.429,3.34012,3.34012,0,0,1-.82313,2.126c2.023,1.78315,4.08042,3.6693,6.3438,5.69234,13.71584,9.97833,13.75018,24.24307,7.95528,33.26137A22.51334,22.51334,0,0,1,96.41688,118.8565,27.30481,27.30481,0,0,1,82.87226,114.98165Zm.61712-51.60654c-12.89272-11.24735-22.22-19.37385-39.1936-38.23358-5.246-6.68626-10.52678-9.12086-14.98443-9.12086a11.78863,11.78863,0,0,0-6.6867,2.05737c-6.03523,4.11476-9.39553,13.78452-3.66885,23.59161.03389.03434.03389.06823.06822.10256,18.13961,33.77594,35.07885,50.71518,67.1403,67.1742,10.45812,5.96657,19.20219,2.19471,23.24872-4.14909,4.286-6.65192,3.97742-16.66458-6.34376-24.10573a.923.923,0,0,1-.27427-.2399C95.07962,73.45644,88.90749,68.107,83.48938,63.37511ZM101.732,91.42437a3.429,3.429,0,1,0,3.429-3.429A3.43875,3.43875,0,0,0,101.732,91.42437ZM91.3421,100.03111l-.48023-.2399c-30.3122-15.56766-45.5713-30.82676-62.81955-62.92254l-.20556-.37679a9.95331,9.95331,0,0,1-1.57714-6.27514,3.44663,3.44663,0,0,0-2.88051-3.90919,3.397,3.397,0,0,0-3.90919,2.8805,16.60229,16.60229,0,0,0,2.43461,10.73279l.13737.23989C40.00983,73.62766,55.989,89.57256,87.63847,105.86034l.3429.17167A24.45189,24.45189,0,0,0,98.303,108.56962a3.42918,3.42918,0,0,0,0-6.85836A17.6755,17.6755,0,0,1,91.3421,100.03111Zm-6.75536-12.0357a3.429,3.429,0,1,0,3.429-3.429A3.43932,3.43932,0,0,0,84.58674,87.99541Zm-3.429-13.71585a3.429,3.429,0,1,0,3.429-3.4294A3.43932,3.43932,0,0,0,81.15778,74.27956Zm-17.14481,0a3.429,3.429,0,1,0,3.429-3.4294A3.439,3.439,0,0,0,64.013,74.27956ZM60.5836,57.13431a3.42917,3.42917,0,1,0,3.42937-3.429A3.43911,3.43911,0,0,0,60.5836,57.13431Zm-17.1448-3.429a3.429,3.429,0,1,0,3.429-3.429A3.439,3.439,0,0,0,43.4388,53.70535Zm-3.429-17.14525a3.429,3.429,0,1,0,3.429-3.429A3.43874,3.43874,0,0,0,40.00983,36.5601Z"/>
+                </svg>
+              </span>
+              <span class="project-name">pickle</span>
+              <span class="project-desc">
+                This data encoding lets you convert pretty much anything into just
+                "pIcPicpICKle". Believe it or not, zero practical applications found.
+              </span>
+            </a>
+
+            <a class="project-card" target="_blank" rel="noopener noreferrer" href="https://github.com/alba4k/albalang" data-reveal>
+              <span class="project-icon">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                  <path d="M12 1 C12.55 1 13.08 1.15 13.55 1.43 L21.02 5.93 C21.63 6.30 22 6.96 22 7.68 V16.32 C22 17.04 21.63 17.70 21.02 18.07 L13.55 22.57 C13.08 22.85 12.55 23 12 23 C11.45 23 10.92 22.85 10.45 22.57 L2.98 18.07 C2.37 17.70 2 17.04 2 16.32 V7.68 C2 6.96 2.37 6.30 2.98 5.93 L10.45 1.43 C10.92 1.15 11.45 1 12 1 Z"/>
+                </svg>
+              </span>
+              <span class="project-name">albalang</span>
+              <span class="project-desc">
+                A programming language and its interpreter. I initially created
+                them as a school project,but might pick it up again someday.
+              </span>
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ===== LINKS — edit hrefs + labels, add/remove cards ===== -->
     <section class="links" id="links">
   <div class="section-inner">
