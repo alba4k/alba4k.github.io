@@ -65,6 +65,9 @@ a {
   border-radius: 50%;
   filter: blur(90px);
   opacity: 0.55;
+  pointer-events: none;
+  isolation: isolate;
+  transition: translate 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .blob-a {
   width: 520px;
