@@ -79,7 +79,7 @@ a {
   height: 480px;
   background: var(--aurora-teal) !important;
   /* Driven by locked pixel coordinate */
-  top: var(--blob-b-top, 600px);
+  top: var(--blob-b-top, 500px);
   right: -100px;
   animation: drift-b 10s ease-in-out infinite;
   /* Smooth glide if JavaScript updates the variable */
