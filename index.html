@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="color-scheme" content="dark">
 <title>Aaron Blasko</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -28,9 +29,9 @@
       <p class="tagline" data-reveal>
         A computer science student at ETH Zurich who likes working with and around computers
       </p>
-      <div class="hero-actions" data-reveal>
-        <a class="btn-primary" href="#links">Get in touch</a>
-        <a class="btn-ghost" href="https://raw.githubusercontent.com/alba4k/cv/refs/heads/master/english/cv_en.pdf" download>Open résumé</a>
+      <div class="hero-actions">
+        <a class="btn-primary" data-reveal href="#links">Get in touch</a>
+        <a class="btn-ghost" data-reveal href="https://raw.githubusercontent.com/alba4k/cv/refs/heads/master/english/cv_en.pdf" download>Open résumé</a>
       </div>
     </div>
     <!---
@@ -44,7 +45,7 @@
     <!-- ===== LINKS — edit hrefs + labels, add/remove cards ===== -->
     <section class="links" id="links">
   <div class="section-inner">
-    <h2>Find me elsewhere</h2>
+    <h2 data-reveal>Find me elsewhere</h2>
     <div class="link-grid">
       <!-- GitHub -->
       <a class="link-card" href="https://github.com/alba4k" data-reveal aria-label="GitHub">
@@ -117,7 +118,7 @@
 <!-- ===== ABOUT ===== -->
 <section class="about" id="about">
   <div class="section-inner">
-    <h2>About</h2>
+    <h2 data-reveal>About</h2>
     <p data-reveal>
       Hey, I'm Aaron, a computer science student from Switzerland who likes learning things,
       building stuff (by myself and with others), and spending time with friends (who doesn't?).
@@ -129,7 +130,7 @@
     <!-- ===== EDUCATION  ===== -->
     <section class="education" id="education">
       <div class="section-inner">
-        <h2>Education</h2>
+        <h2 data-reveal>Education</h2>
         <ol class="timeline">
           <li data-reveal>
             <div class="timeline-date">2025 — Present</div>
@@ -154,7 +155,7 @@
     <!-- ===== SKILLS — swap in your own list ===== -->
     <section class="skills" id="skills">
       <div class="section-inner">
-        <h2>Skills</h2>
+        <h2 data-reveal>Skills</h2>
         <ul class="tag-list" data-reveal>
           <li>Learning Fast</li>
           <li>Helping Others</li>
@@ -167,7 +168,7 @@
   </main>
 
   <footer class="site-footer">
-    <p>&copy; <span id="year"></span> Aaron Blasko</p>
+    <p data-reveal>&copy; <span id="year"></span> Aaron Blasko</p>
   </footer>
 
   <script src="script.js"></script>

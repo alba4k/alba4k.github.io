@@ -9,7 +9,7 @@ if ("IntersectionObserver" in window) {
     (entries) => {
       entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
-          entry.target.style.transitionDelay = `${(i % 4) * 80}ms`;
+          entry.target.style.transitionDelay = `${(i % 5) * 80}ms`;
           entry.target.classList.add("is-visible");
           io.unobserve(entry.target);
         }

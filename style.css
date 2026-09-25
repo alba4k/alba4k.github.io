@@ -48,9 +48,17 @@ a {
 /* ============ Ambient background ============ */
 .aurora {
   position: fixed;
-  inset: 0;
+  top: -100px;
+  left: -100px;
+  /* Extends beyond the screen by 200px so Samsung Internet's navbar 
+     expansion never reveals an unrendered gap */
+  width: calc(100vw + 200px);
+  height: calc(100lvh + 200px);
   z-index: -1;
   overflow: hidden;
+  pointer-events: none;
+  /* Tell the compositor this layer moves dynamically with viewport scale */
+  contain: paint;
 }
 .blob {
   position: absolute;
@@ -69,10 +77,13 @@ a {
 .blob-b {
   width: 480px;
   height: 480px;
-  background: var(--aurora-teal);
-  bottom: -160px;
-  right: -110px;
+  background: var(--aurora-teal) !important;
+  /* Driven by locked pixel coordinate */
+  top: var(--blob-b-top, 350px);
+  right: -100px;
   animation: drift-b 32s ease-in-out infinite;
+  /* Smooth glide if JavaScript updates the variable */
+  transition: top 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 @keyframes drift-a {
   0%,
