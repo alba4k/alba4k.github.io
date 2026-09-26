@@ -21,21 +21,22 @@ updateTime()
 setInterval(updateTime, 10000); // update every 10s
 
 window.addEventListener('DOMContentLoaded', () => {
+  const container = document.querySelector('.portfolio-scroll');
   const cards = document.querySelectorAll('.project-card');
-  if(cards.length >= 2) {
-    cards[1].scrollIntoView({
-      inline: 'center',
-      block: 'nearest',
-      behavior: 'instant'
-    });
+  if(cards.length >= 2 && container) {
+    const card = cards[1];
+    const containerRect = container.getBoundingClientRect();
+    const cardRect = card.getBoundingClientRect();
+    const offset = (cardRect.left + cardRect.width / 2) - (containerRect.left + containerRect.width / 2);
+    container.scrollLeft += offset;
   }
   
 });
 window.addEventListener("keydown", (e) => {
   if(e.key === "ArrowRight") {
-    document.querySelector(".portfolio-scroll")?.scrollBy({left: 350, behavior: "smooth"});
+    document.querySelector(".portfolio-scroll")?.scrollBy({left: 250, behavior: "smooth"});
   } else if(e.key === "ArrowLeft") {
-    document.querySelector(".portfolio-scroll")?.scrollBy({left: -350, behavior: "smooth"});
+    document.querySelector(".portfolio-scroll")?.scrollBy({left: -250, behavior: "smooth"});
   }
 });
 
@@ -76,8 +77,6 @@ if(!prefersReduced) {
     const x = (e.clientX / window.innerWidth - 0.5) * 30;
     const y = (e.clientY / window.innerHeight - 0.5) * 30;
     blobs.forEach((blob, i) => {
-      // Uses the standalone `translate` property so it composites
-      // with the CSS keyframe animation's `transform` instead of fighting it.
       blob.style.translate = `${x * (i + 1)}px ${y * (i + 1)}px`;
     });
   });
