@@ -34,9 +34,9 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 window.addEventListener("keydown", (e) => {
   if(e.key === "ArrowRight") {
-    document.querySelector(".portfolio-scroll")?.scrollBy({left: 250, behavior: "smooth"});
+    document.querySelector(".portfolio-scroll")?.scrollBy({left: 200, behavior: "smooth"});
   } else if(e.key === "ArrowLeft") {
-    document.querySelector(".portfolio-scroll")?.scrollBy({left: -250, behavior: "smooth"});
+    document.querySelector(".portfolio-scroll")?.scrollBy({left: -200, behavior: "smooth"});
   }
 });
 

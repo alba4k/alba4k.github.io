@@ -8,6 +8,7 @@
   --accent: #f2b75c;
   --aurora-violet: #6940d1;
   --aurora-teal: #f2b75c;
+  --portfolio-card-w: 330px;
 
   --serif: "Fraunces", Georgia, serif;
   --sans: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -203,6 +204,7 @@ h2 {
 
 /* ============ Portfolio ============ */
 .portfolio-scroll {
+  container-type: inline-size;   /* add this line */
   overflow-x: auto;
   overflow-y: hidden;
   scrollbar-width: none;
@@ -233,13 +235,13 @@ h2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 
-  padding-left: calc(50vw - 165px);
-  padding-right: calc(50vw - 165px);
+  padding-left: calc(50cqw - var(--portfolio-card-w)/2);
+  padding-right: calc(50cqw - var(--portfolio-card-w)/2);
 }
 .project-card {
   flex: 0 0 auto;
   scroll-snap-align: center;
-  width: 330px;
+  width: var(--portfolio-card-w);
   display: flex;
   flex-direction: column;
   gap: 0.55rem;
@@ -419,6 +421,9 @@ h2 {
 
 /* ============ Mobile ============ */
 @media (max-width: 640px) {
+  :root {
+    --portfolio-card-w: 230px
+  }
   .section-inner {
     padding: 3.5rem 1.25rem;
   }
@@ -426,7 +431,7 @@ h2 {
     filter: blur(70px);
   }
   .project-card {
-    width: 230px;
+    width: var(--portfolio-card-w);
   }
 }
 
