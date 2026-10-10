@@ -203,13 +203,8 @@ h2 {
 }
 
 /* ============ Portfolio ============ */
-.portfolio-scroll {
-  container-type: inline-size;   /* add this line */
-  overflow-x: auto;
-  overflow-y: hidden;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-  scroll-snap-type: x proximity;
+.portfolio-scroll-wrapper {
+  position: relative;
   mask-image: linear-gradient(
     to right,
     transparent 0%,
@@ -225,6 +220,14 @@ h2 {
     transparent 100%
   );
 }
+.portfolio-scroll {
+  container-type: inline-size;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+}
 .portfolio-scroll::-webkit-scrollbar {
   display: none;
 }
@@ -239,6 +242,7 @@ h2 {
   padding-right: calc(50cqw - var(--portfolio-card-w)/2);
 }
 .project-card {
+  position: relative;
   flex: 0 0 auto;
   scroll-snap-align: center;
   width: var(--portfolio-card-w);
@@ -249,10 +253,14 @@ h2 {
   border-radius: var(--radius);
   border: 1px solid var(--panel-border);
   background: var(--panel);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
   text-decoration: none;
   transition: transform 0.3s ease, border-color 0.3s ease;
+}
+@supports not (-moz-appearance: none) {
+  .project-card {
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
 }
 .project-card:hover {
   transform: translateY(-4px);
