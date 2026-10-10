@@ -70,18 +70,26 @@ function updateTime() {
 updateTime()
 setInterval(updateTime, 10000); // update every 10s
 
-window.addEventListener('DOMContentLoaded', () => {
-  const container = document.querySelector('.portfolio-scroll');
-  const cards = document.querySelectorAll('.project-card');
-  if(cards.length >= 2 && container) {
-    const card = cards[1];
-    const containerRect = container.getBoundingClientRect();
+// Portfolio centering
+const portfolioContainer = document.querySelector('.portfolio-scroll');
+const projectCards = document.querySelectorAll('.project-card');
+
+function centerPortfolioCard() {
+  if (projectCards.length >= 2 && portfolioContainer) {
+    const card = projectCards[1];
+    const containerRect = portfolioContainer.getBoundingClientRect();
     const cardRect = card.getBoundingClientRect();
     const offset = (cardRect.left + cardRect.width / 2) - (containerRect.left + containerRect.width / 2);
-    container.scrollLeft += offset;
+    if (Math.abs(offset) > 1) {
+      portfolioContainer.scrollLeft += offset;
+    }
   }
-  
-});
+}
+
+centerPortfolioCard();
+window.addEventListener('DOMContentLoaded', centerPortfolioCard);
+window.addEventListener('load', centerPortfolioCard);
+
 window.addEventListener("keydown", (e) => {
   if(e.key === "ArrowRight") {
     document.querySelector(".portfolio-scroll")?.scrollBy({left: 200, behavior: "smooth"});
@@ -92,23 +100,73 @@ window.addEventListener("keydown", (e) => {
 
 // Scroll-reveal: fade+blur elements in as they enter the viewport
 const revealEls = document.querySelectorAll("[data-reveal]");
+
+function revealElement(el, index = 0) {
+  if (!el.classList.contains("is-visible")) {
+    el.style.transitionDelay = `${(index % 5) * 80}ms`;
+    el.classList.add("is-visible");
+    setTimeout(() => {
+      el.style.transitionDelay = "";
+    }, 1000);
+  }
+}
+
 if("IntersectionObserver" in window) {
   const io = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
-          entry.target.style.transitionDelay = `${(i % 5) * 80}ms`;
-          entry.target.classList.add("is-visible");
+          revealElement(entry.target, i);
           io.unobserve(entry.target);
         }
       });
     },
-    { threshold: 0.15 }
+    { threshold: 0 }
   );
+
   revealEls.forEach((el) => io.observe(el));
+
+  // Check visibility for cards within portfolio horizontal scroll
+  const checkPortfolioCards = () => {
+    if (!portfolioContainer) return;
+    const contRect = portfolioContainer.getBoundingClientRect();
+    portfolioContainer.querySelectorAll('.project-card[data-reveal]:not(.is-visible)').forEach((card, i) => {
+      const rect = card.getBoundingClientRect();
+      const inContainer = rect.right > contRect.left && rect.left < contRect.right;
+      const inViewport = rect.bottom > 0 && rect.top < window.innerHeight;
+      if (inContainer && inViewport) {
+        revealElement(card, i);
+        io.unobserve(card);
+      }
+    });
+  };
+
+  portfolioContainer?.addEventListener('scroll', checkPortfolioCards, { passive: true });
+
+  // Initial check to ensure all elements partially visible on load are rendered immediately
+  const checkInitialVisible = () => {
+    checkPortfolioCards();
+    document.querySelectorAll('[data-reveal]:not(.is-visible)').forEach((el, i) => {
+      const rect = el.getBoundingClientRect();
+      const inViewport = rect.bottom > 0 && rect.top < window.innerHeight && rect.right > 0 && rect.left < window.innerWidth;
+      if (inViewport) {
+        const parentScroll = el.closest('.portfolio-scroll');
+        if (parentScroll) {
+          const contRect = parentScroll.getBoundingClientRect();
+          if (rect.right <= contRect.left || rect.left >= contRect.right) return;
+        }
+        revealElement(el, i);
+        io.unobserve(el);
+      }
+    });
+  };
+
+  checkInitialVisible();
+  window.addEventListener('DOMContentLoaded', checkInitialVisible);
+  window.addEventListener('load', checkInitialVisible);
 } else {
   // Fallback: just show everything
-  revealEls.forEach((el) => el.classList.add("is-visible"));
+  revealEls.forEach((el) => revealElement(el));
 }
 
 // Scroll cue button
