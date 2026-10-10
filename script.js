@@ -1,3 +1,53 @@
+// Theme toggle (Dark / Light)
+const theme_btn = document.getElementById("theme-toggle");
+
+function getTheme() {
+  const saved = localStorage.getItem("theme");
+  if(saved) return saved;
+  return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+}
+
+function updateThemeToggleUI(theme) {
+  if(!theme_btn) return;
+  const is_light = theme === "light";
+  const label = is_light ? "Switch to dark mode" : "Switch to light mode";
+  theme_btn.setAttribute("aria-label", label);
+  theme_btn.setAttribute("title", label);
+  theme_btn.setAttribute("aria-pressed", is_light ? "true" : "false");
+}
+
+function applyTheme(t) {
+  document.documentElement.setAttribute("data-theme", t);
+  document.documentElement.style.colorScheme = t;
+  const scheme = document.querySelector('meta[name="color-scheme"]');
+  if(scheme)
+    scheme.setAttribute("content", t);
+  updateThemeToggleUI(t);
+}
+
+function setTheme(t) {
+  applyTheme(t);
+  try {
+    localStorage.setItem("theme", t);
+  } catch(e) {}
+}
+
+if(theme_btn) {
+  updateThemeToggleUI(document.documentElement.getAttribute("data-theme") || getTheme());
+  theme_btn.addEventListener("click", () => {
+    const current = document.documentElement.getAttribute("data-theme") || getTheme();
+    const next = current === "light" ? "dark" : "light";
+    setTheme(next);
+  });
+}
+
+// Follow browser/system theme changes if the user hasn't manually set a preference
+window.matchMedia("(prefers-color-scheme: light)").addEventListener("change", (e) => {
+  if(!localStorage.getItem("theme")) {
+    applyTheme(e.matches ? "light" : "dark");
+  }
+});
+
 // Footer year
 const year_elem = document.getElementById("year");
 if(year_elem) year_elem.textContent = new Date().getFullYear();

@@ -1,13 +1,17 @@
 /* ============ Design tokens — edit these to reskin the whole site ============ */
 :root {
-  --ink: #0b0d14;
+  --ink: #000000;
   --panel: rgba(255, 255, 255, 0.045);
   --panel-border: rgba(255, 255, 255, 0.09);
-  --text-primary: #f3f1ec;
+  --card-shadow: none;
+  --text-primary: #eadab1;
   --text-muted: #9a9cab;
   --accent: #f2b75c;
+  --accent-subtle: rgba(242, 183, 92, 0.12);
+  --btn-primary-text: #0b0d14;
   --aurora-violet: #6940d1;
   --aurora-teal: #f2b75c;
+  --blob-opacity: 0.55;
   --portfolio-card-w: 330px;
 
   --serif: "Fraunces", Georgia, serif;
@@ -15,6 +19,23 @@
 
   --radius: 18px;
   --content-width: 760px;
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --ink: #f7f6f2;
+  --panel: rgba(255, 255, 255, 0.72);
+  --panel-border: rgba(20, 22, 35, 0.08);
+  --card-shadow: 0 4px 20px -2px rgba(20, 22, 35, 0.05);
+  --text-primary: #12131a;
+  --text-muted: #626474;
+  --accent: #c07204;
+  --accent-subtle: rgba(192, 114, 4, 0.1);
+  --btn-primary-text: #ffffff;
+  --aurora-violet: #4722a5;
+  --aurora-teal: #c07204;
+  --blob-opacity: 0.6;
+  color-scheme: light;
 }
 
 * {
@@ -30,6 +51,8 @@ body {
   font-family: var(--sans);
   line-height: 1.65;
   overflow-x: hidden;
+  transition: background-color 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 h1,
 h2,
@@ -65,7 +88,9 @@ a {
   position: absolute;
   border-radius: 50%;
   filter: blur(90px);
-  opacity: 0.55;
+  opacity: var(--blob-opacity, 0.55);
+  transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .blob-a {
   width: 520px;
@@ -74,6 +99,7 @@ a {
   top: -140px;
   left: -120px;
   animation: drift-a 15s ease-in-out infinite;
+  transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .blob-b {
   width: 480px;
@@ -84,7 +110,8 @@ a {
   right: -100px;
   animation: drift-b 10s ease-in-out infinite;
   /* Smooth glide if JavaScript updates the variable */
-  transition: top 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: top 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 @keyframes drift-a {
   0%,
@@ -145,11 +172,14 @@ a {
   font-weight: 600;
   font-size: 0.95rem;
   text-decoration: none;
-  transition: transform 0.25s ease, border-color 0.25s ease;
+  transition: transform 0.25s ease,
+              border-color 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .btn-primary {
   background: var(--accent);
-  color: var(--ink);
+  color: var(--btn-primary-text, var(--ink));
 }
 .btn-primary:hover {
   transform: translateY(-2px);
@@ -157,6 +187,7 @@ a {
 .btn-ghost {
   border: 1px solid var(--panel-border);
   background: var(--panel);
+  color: var(--text-primary);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
@@ -253,8 +284,12 @@ h2 {
   border-radius: var(--radius);
   border: 1px solid var(--panel-border);
   background: var(--panel);
+  box-shadow: var(--card-shadow, none);
   text-decoration: none;
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  transition: transform 0.3s ease,
+              border-color 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 @supports not (-moz-appearance: none) {
   .project-card {
@@ -276,8 +311,10 @@ h2 {
   width: 30px;
   height: 30px;
   border-radius: 9px;
-  background: rgba(242, 183, 92, 0.12);
+  background: var(--accent-subtle);
   color: var(--accent);
+  transition: background-color 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .project-name {
   font-family: var(--serif);
@@ -305,10 +342,14 @@ h2 {
   border-radius: var(--radius);
   border: 1px solid var(--panel-border);
   background: var(--panel);
+  box-shadow: var(--card-shadow, none);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   text-decoration: none;
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  transition: transform 0.3s ease,
+              border-color 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .link-card:hover {
   transform: translateY(-4px);
@@ -318,16 +359,28 @@ h2 {
   font-family: var(--serif);
   font-size: 1.2rem;
   color: var(--accent);
+  transition: color 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .link-label {
   font-size: 0.92rem;
   color: var(--text-primary);
+  transition: color 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ============ About ============ */
 .about p {
   max-width: 68ch;
   color: var(--text-muted);
+}
+.about a {
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 3px;
+  transition: color 0.25s ease, text-decoration-color 0.25s ease;
+}
+.about a:hover {
+  color: var(--accent);
 }
 
 /* ============ Education timeline ============ */
@@ -339,6 +392,7 @@ h2 {
   display: flex;
   flex-direction: column;
   gap: 2.25rem;
+  transition: border-color 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .timeline li {
   position: relative;
@@ -352,20 +406,27 @@ h2 {
   height: 8px;
   border-radius: 50%;
   background: var(--accent);
+  transition: background-color 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .timeline-date {
   color: var(--text-muted);
   font-size: 0.85rem;
   margin-bottom: 0.3rem;
+  transition: color 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .timeline-body h3 {
   font-size: 1.15rem;
   margin-bottom: 0.2rem;
+  transition: color 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .timeline-org {
   color: var(--text-muted);
   font-size: 0.9rem;
   margin-bottom: 0.5rem;
+  transition: color 0.25s ease;
+}
+.timeline-org:hover {
+  color: var(--accent);
 }
 .timeline-body p:last-child {
   max-width: 60ch;
@@ -387,6 +448,11 @@ h2 {
   background: var(--panel);
   font-size: 0.88rem;
   color: var(--text-muted);
+  box-shadow: var(--card-shadow, none);
+  transition: background-color 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ============ Footer ============ */
@@ -395,6 +461,97 @@ h2 {
   padding: 3rem 1.5rem 4rem;
   color: var(--text-muted);
   font-size: 0.85rem;
+  transition: color 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============ Global Color Transitions ============ */
+h1, h2, h3, p {
+  transition: color 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============ Theme toggle button ============ */
+.theme-toggle {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  color: var(--accent);
+  cursor: pointer;
+  z-index: 100;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: var(--card-shadow, 0 4px 16px rgba(0, 0, 0, 0.12));
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              border-color 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-toggle:hover {
+  transform: scale(1.08);
+  border-color: var(--accent);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.theme-toggle:active {
+  transform: scale(0.92);
+}
+
+.theme-toggle-icon-wrap {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  pointer-events: none;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+              opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark mode (default): Sun is shown so user can switch to light mode */
+.icon-sun {
+  transform: rotate(0deg) scale(1);
+  opacity: 1;
+}
+
+.icon-moon {
+  transform: rotate(-90deg) scale(0);
+  opacity: 0;
+}
+
+/* Light mode: Moon is shown so user can switch to dark mode */
+[data-theme="light"] .icon-sun {
+  transform: rotate(90deg) scale(0);
+  opacity: 0;
+}
+
+[data-theme="light"] .icon-moon {
+  transform: rotate(0deg) scale(1);
+  opacity: 1;
 }
 
 /* ============ Scroll-reveal: blur → sharp ============ */
@@ -425,12 +582,34 @@ h2 {
     filter: none;
     transform: none;
   }
+  body,
+  .btn-primary,
+  .btn-ghost,
+  .project-card,
+  .link-card,
+  .tag-list li,
+  .blob,
+  .theme-toggle,
+  .theme-icon {
+    transition: none !important;
+  }
 }
 
 /* ============ Mobile ============ */
 @media (max-width: 640px) {
   :root {
-    --portfolio-card-w: 230px
+    --portfolio-card-w: 230px;
+  }
+  .theme-toggle {
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+  }
+  .theme-toggle-icon-wrap,
+  .theme-icon {
+    width: 20px;
+    height: 20px;
   }
   .section-inner {
     padding: 3.5rem 1.25rem;
